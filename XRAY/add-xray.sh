@@ -7,7 +7,7 @@ purple='\e[0;35m'
 orange='\e[0;33m'
 NC='\e[0m'
 ######################################################################################################################
-domain=$(cat /usr/local/etc/xray/domain)
+domain=$(cat /root/domain)
 MYIP=$(wget -qO- ipv4.icanhazip.com);
 xtls="$(cat ~/log-install.txt | grep -w "VLESS TCP XTLS" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do

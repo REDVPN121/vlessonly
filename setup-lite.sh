@@ -56,7 +56,7 @@ apt install git curl -y >/dev/null 2>&1
 echo -e "[ ${green}INFO${NC} ] Installation file is ready to begin !"
 sleep 1
 
-if [ -f "/usr/local/etc/xray/domain" ]; then
+if [ -f "/root/domain" ]; then
 echo "Script Already Installed"
 exit 0
 fi
@@ -101,7 +101,7 @@ echo "IP=$host" > /var/lib/premium-script/ipvps.conf
 echo "IP=$host" > /var/lib/crot-script/ipvps.conf
 echo "$host" > /root/domain
 domaiin=$(cat /root/domain)
-echo "$domaiin" > /usr/local/etc/xray/domain
+echo "$domaiin" > /root/domain
 echo "$clientname" > /var/lib/premium-script/clientname.conf
 echo "$tele_token" > /var/lib/premium-script/tele_token.txt
 echo "$tele_id" > /var/lib/premium-script/tele_id.txt

@@ -69,7 +69,7 @@ fi
 
 user=$(grep -E "^### " "/usr/local/etc/xray/xtls.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
 xtls="$(cat ~/log-install.txt | grep -w "VLESS TCP XTLS" | cut -d: -f2|sed 's/ //g')"
-domain=$(cat /usr/local/etc/xray/domain)
+domain=$(cat /root/domain)
 uuid=$(grep "},{" /usr/local/etc/xray/xtls.json | cut -b 11-46 | sed -n "${CLIENT_NUMBER}"p)
 exp=$(grep -E "^### " "/usr/local/etc/xray/xtls.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
 hariini=`date -d "0 days" +"%Y-%m-%d"`
