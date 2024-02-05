@@ -30,7 +30,7 @@ fi
 }
 clear
 #comment lesen di bawah if dont want ip auth
-lesen
+#lesen
 #get ip from access github
 BURIQ() {
     curl -sS https://raw.githubusercontent.com/YoloNet/IP-Multiport-Websocket/main/access >/root/tmp
