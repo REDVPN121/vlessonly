@@ -1,7 +1,6 @@
 #!/bin/bash
 #Autoscript-Lite By YoLoNET
 clear
-###############################START IP PERMISSION#################################################
 red='\e[1;31m'
 green='\e[0;32m'
 purple='\e[0;35m'
@@ -12,9 +11,8 @@ dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Dat
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 MYIP=$(wget -qO- ipv4.icanhazip.com);
 clear
-#########################################################END OF IP PERMISSION#########################################
-######################################################################################################################
-clear
+
+
 domain=$(cat /usr/local/etc/xray/domain)
 tls="$(cat ~/log-install.txt | grep -w "VLESS WS TLS" | cut -d: -f2|sed 's/ //g')"
 none="$(cat ~/log-install.txt | grep -w "VLESS WS None TLS" | cut -d: -f2|sed 's/ //g')"

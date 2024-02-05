@@ -2,7 +2,6 @@
 # SSH-VPN Installation Setup
 # By YoLoNET
 # ==================================
-###############################START IP PERMISSION#################################################
 Server_URL="$(cat /root/install_link.txt )"
 red='\e[1;31m'
 green='\e[0;32m'
