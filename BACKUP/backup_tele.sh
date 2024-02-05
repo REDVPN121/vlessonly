@@ -18,13 +18,10 @@ date=$(date +"%d-%m-%Y-%H:%M:%S")
 domain=$(cat /root/domain)
 
 # TOTAL ACC XRAYS WS & XTLS
-tvmess=$(grep -c -E "^### $user" "/usr/local/etc/xray/config.json")
-tvless=$(grep -c -E "^### $user" "/usr/local/etc/xray/vless.json")
-ttrws=$(grep -c -E "^### $user" "/usr/local/etc/xray/trojanws.json")
-ttxtls=$(grep -c -E "^### $user" "/usr/local/etc/xray/xtrojan.json")
-ttr=$(grep -c -E "^### $user" "/usr/local/etc/xray/trojan.json")
+tvless=$(grep -c -E "^### $user" "/usr/local/etc/xray/config.json")
+ttxtls=$(grep -c -E "^### $user" "/usr/local/etc/xray/xtls.json")
 
-Total_User=$(($tvmess + $tvless + $ttrws + $ttxtls + $ttr))
+Total_User=$(($tvless + $ttxtls))
 
 clear
 echo " VPS Data Backup By YOLONET "

@@ -95,11 +95,13 @@ echo -e " ${green}get Your Telegram CHAT ID from BOT @MissRose_bot${NC}"
 echo -e ""
 read -p " TELEGRAM CHAT ID: " tele_id
 echo -e ""
+
 # / / saving information to /var/lib
 echo "IP=$host" > /var/lib/premium-script/ipvps.conf
 echo "IP=$host" > /var/lib/crot-script/ipvps.conf
 echo "$host" > /root/domain
-echo "$host" > /usr/local/etc/xray/domain
+domaiin=$(cat /root/domain)
+echo "$domaiin" > /usr/local/etc/xray/domain
 echo "$clientname" > /var/lib/premium-script/clientname.conf
 echo "$tele_token" > /var/lib/premium-script/tele_token.txt
 echo "$tele_id" > /var/lib/premium-script/tele_id.txt

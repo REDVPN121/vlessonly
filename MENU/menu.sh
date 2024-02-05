@@ -36,8 +36,8 @@ clear
 domain=$(cat /root/domain)
 #headerdesign
 KEPALA=$(figlet -f slant "RED VPN")
-servercountry=$(cat /usr/local/etc/servercountry.txt)
-ispserver=$(cat /usr/local/etc/serverisp.txt)
+ispserver=$(curl -sL ip.guide | jq -r '.network.autonomous_system.organization')
+servercountry=$(curl -sL ip.guide | jq -r '.location.country')
 namaklien=$(cat /var/lib/premium-script/clientname.conf)
 clear
 # // nginx status
@@ -56,32 +56,6 @@ else
     status_xray="${RED}OFF${NC}"
 fi
 ###########################
-#Count Total User Vmess
-check_online_users_vmess() {
-    data=( $(grep '^###' /usr/local/etc/xray/config.json | awk '{print $2}' | sort -u) )
-
-    for akun in "${data[@]}"; do
-        data2=( $(cat /var/log/xray/access.log | tail -n 500 | awk '{print $3}' | sed 's/tcp://g' | cut -d ":" -f 1 | sort -u) )
-        ipvmess=()
-
-        for ip in "${data2[@]}"; do
-            jum=$(cat /var/log/xray/access.log | grep -w "$akun" | tail -n 500 | awk '{print $3}' | sed 's/tcp://g' | cut -d ":" -f 1 | grep -w "$ip" | sort -u)
-            if [[ "$jum" = "$ip" ]]; then
-                ipvmess+=("$jum")
-            else
-                echo "$ip" >> /tmp/ipvmess.txt
-            fi
-        done
-    done
-
-    sort /tmp/ipvmess.txt | uniq > /tmp/totalonlinevmess.txt
-    totaluseronline=$(cat /tmp/totalonlinevmess.txt | wc -l)
-
-    echo "Vmess = $totaluseronline"
-    
-rm -rf /tmp/ipvmess.txt
-rm -rf /tmp/totalonlinevmess.txt
-}
 #Count total xtls online
 check_online_users_xtls() {
     data=( $(cat /usr/local/etc/xray/xtls.json | grep '^###' | awk '{print $2}' | sort -u) )
@@ -114,7 +88,7 @@ rm -rf /tmp/totalonlinextls.txt
 }
 
 check_online_users_vless() {
-    data=( $(cat /usr/local/etc/xray/vless.json | grep '^###' | awk '{print $2}' | sort -u) )
+    data=( $(cat /usr/local/etc/xray/config.json | grep '^###' | awk '{print $2}' | sort -u) )
 
     for akun in "${data[@]}"; do
         if [[ -z "$akun" ]]; then
@@ -142,16 +116,13 @@ check_online_users_vless() {
 rm -rf /tmp/othervless.txt
 rm -rf /tmp/totalonlinevless.txt
 }
-# TOTAL ACC CREATE VMESS WS
-totalvmess=$(grep -c -E "^### " "/usr/local/etc/xray/config.json")
 # TOTAL ACC CREATE  VLESS WS
-totalvless=$(grep -c -E "^### " "/usr/local/etc/xray/vless.json")
+totalvless=$(grep -c -E "^### " "/usr/local/etc/xray/config.json")
 # TOTAL ACC CREATE  VLESS TCP XTLS
 totalxtls=$(grep -c -E "^### " "/usr/local/etc/xray/xtls.json")
 ### MENU START DI BAWAH ##
 clear
 # Call the count user online function
-useronvmess=$(check_online_users_vmess)
 useronxtls=$(check_online_users_xtls)
 useronvless=$(check_online_users_vless)
 clear
@@ -181,8 +152,8 @@ echo -e " IP VPS          :  $IPVPS"
 echo -e "\e[36m╒════════════════════════════════════════════════════╕\033[0m"
 echo -e "     [ XRAY-CORE${NC} : ${status_xray} ]   [ NGINX${NC} : ${status_nginx} ]"
 echo -e "\e[36m╘════════════════════════════════════════════════════╛\033[0m"
-echo -e " Online User     : $useronvmess | $useronvless | $useronxtls"
-echo -e " Total User      : Vmess=$totalvmess  | vless=$totalvless   | XTLS = $totalxtls " 
+echo -e " Online User     :$useronvless | $useronxtls"
+echo -e " Total User      :vless=$totalvless   | XTLS = $totalxtls " 
 echo -e "\e[36m╒════════════════════════════════════════════════════╕\033[0m"
 echo -e " \E[44;1;46m                     XRAY MENU                      \E[0m"
 echo -e "\e[36m╘════════════════════════════════════════════════════╛\033[0m

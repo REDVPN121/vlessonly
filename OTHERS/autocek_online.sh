@@ -36,7 +36,7 @@ rm -rf /tmp/totalonlinevmess.txt>/dev/null 2>&1
 check_online_users_vless() {
     echo -n > /tmp/ipvless.txt
     echo -n > /root/vlessonline.txt # save the total vless user online to the file
-    data=( `cat /usr/local/etc/xray/vless.json | grep '^###' | cut -d ' ' -f 2 | sort | uniq`);
+    data=( `cat /usr/local/etc/xray/config.json | grep '^###' | cut -d ' ' -f 2 | sort | uniq`);
 
     for akun in "${data[@]}"; do
         if [[ -z "$akun" ]]; then

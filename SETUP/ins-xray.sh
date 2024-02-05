@@ -587,7 +587,6 @@ sed -i '$ igrpc_pass grpc://127.0.0.1:24456;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
 sed -i '$ iadd_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;' /etc/nginx/conf.d/xray.conf
-sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
 sleep 1
 echo -e "$yell[SERVICE]$NC Restart All service"

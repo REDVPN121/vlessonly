@@ -22,7 +22,7 @@ date=$(date +"%d-%m-%Y-%H:%M:%S")
 domain=$(cat /root/domain)
 
 # TOTAL ACC XRAYS WS & XTLS
-tvless=$(grep -c -E "^### $user" "/usr/local/etc/xray/vless.json")
+tvless=$(grep -c -E "^### $user" "/usr/local/etc/xray/config.json")
 ttxtls=$(grep -c -E "^### $user" "/usr/local/etc/xray/xtls.json")
 
 Total_User=$(($tvless + $ttxtls))
