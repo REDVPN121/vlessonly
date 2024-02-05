@@ -1,4 +1,5 @@
  <h2 align="center">AutoScript VPN By YoLoNet <img src="https://img.shields.io/badge/Version-1.0-blue.svg"></h2>
+<h2 align="center"> VLESS ONLY ( SUPPORT CUSTOM PATH) </h2>
 
 
 <h2 align="center"> Supported Linux Distribution</h2>
